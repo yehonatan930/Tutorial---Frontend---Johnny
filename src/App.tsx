@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Typography} from '@material-ui/core'
+// import { Banner, HalfPage, StickyHalfPage } from './ads/src/ads/ads';
+import { TemplateExhibitor } from './components/TemplatesExhibitor';
+import { TemplateProvider } from './utils/TemplateContext';
+// import LyingKitbag from "./ads/src/ads/LyingK.jpg";
+// import Madim from "./ads/src/ads/madim.jpg";
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TemplateProvider>
+
+        <header className="App-header">
+          {/* <StickyHalfPage href={'https://madim-develop.azurewebsites.net/#/home'} image={Madim}></StickyHalfPage> */}
+
+          <Typography variant='h1'>Template page</Typography>
+        </header>
+        <TemplateExhibitor/>
+        {/* <Banner href={"https://kitbag.prat.idf.il/#"} image={LyingKitbag}></Banner> */}
+      </TemplateProvider>
+
     </div>
   );
 }
