@@ -17,8 +17,9 @@ export class TemplateProvider extends React.Component<{}, TemplateProperties> {
     super(props);
     this.state = {
       templates:[],
-      updateTemplates: (templates:Template[])=>this.updateTemplates(templates),
+      updateTemplates: (_templates:Template[])=>{},
     };
+    this.setState({...this.state,updateTemplates:this.updateTemplates})
     // getting the Whole data from the API
     this.refreshContext();
   }

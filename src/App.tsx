@@ -16,9 +16,10 @@ function App() {
         <header className="App-header">
           {/* <StickyHalfPage href={'https://madim-develop.azurewebsites.net/#/home'} image={Madim}></StickyHalfPage> */}
 
-          <Typography variant='h1'>Template page</Typography>
+          <Typography variant='h1'>This is a Template page</Typography>
+          <TemplateExhibitor/>
+
         </header>
-        <TemplateExhibitor/>
         {/* <Banner href={"https://kitbag.prat.idf.il/#"} image={LyingKitbag}></Banner> */}
       </TemplateProvider>
 

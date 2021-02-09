@@ -21,15 +21,15 @@ const Templates: React.FC<{
   return <>
     {props.templateContext.templates? props.templateContext.templates.map(template=>
       (
-        <Card className={classes.root} key={"templateID-"+template.id}>
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
-            {template.templateField1}
+        <Card className={classes.root} key={"templateID-"+template.id} >
+          <Typography className={classes.title} color="textPrimary" variant={"h1"} gutterBottom>
+            {"This is a template Card"}
           </Typography>
-            <Typography className={classes.title} color="textSecondary" gutterBottom>
-              {"The TemplateField1 content is: " + template.templateField1}
+            <Typography className={classes.title} color="textPrimary" gutterBottom>
+              {"The first template field content is: " + template.templateField1}
           </Typography>
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
-              {"The TemplateField2 content is: " + template.templateField2}
+          <Typography className={classes.title} color="textPrimary" gutterBottom>
+              {"The second template field content is: " + template.templateField2}
           </Typography>
         </Card>
       )
