@@ -1,6 +1,7 @@
 import { AuthenticationParameters } from "msal";
 import { msalApp, requiresInteraction, GRAPH_REQUESTS, fetchMsGraph, GRAPH_ENDPOINTS } from "./msal/auth-utils";
 import AxiosInstance from "../utils/axios.instance";
+import { appInsights } from "../utils/appInsights";
 
 let graphProfile = null;
 
@@ -18,6 +19,7 @@ export const acquireToken = async (request: AuthenticationParameters, redirect =
 
 export const onSignIn = async (redirect = true) => {
   if (redirect) {
+    appInsights.trackEvent({name:"Login"},{user: "a user name"});
     return msalApp.loginRedirect(GRAPH_REQUESTS.LOGIN);
   }
 
@@ -54,6 +56,7 @@ export const getUserProfileByID = async (id: string) => {
 };
 
 export const runApp = async (app: JSX.Element): Promise<JSX.Element> => {
+  appInsights.trackEvent({name:"Started"},{time: new Date().toISOString()});
   msalApp.handleRedirectCallback((authCallback: any) => {
     console.log(authCallback);
   });

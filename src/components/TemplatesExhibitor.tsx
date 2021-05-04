@@ -4,7 +4,8 @@ import {
 } from "../utils/TemplateContext";
 import { Card, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { withAITracking } from '@microsoft/applicationinsights-react-js';
+import { reactPlugin } from "../utils/appInsights";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -36,4 +37,4 @@ const Templates: React.FC<{
     ) : []}
     </>
 };
-export const TemplateExhibitor = WithTemplateContext(Templates);
+export const TemplateExhibitor = withAITracking(reactPlugin, WithTemplateContext(Templates));

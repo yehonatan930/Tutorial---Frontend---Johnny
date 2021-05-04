@@ -8,7 +8,6 @@ import { TemplateProvider } from './utils/TemplateContext';
 // import Madim from "./ads/src/ads/madim.jpg";
 
 function App() {
-
   return (
     <div className="App">
       <TemplateProvider>

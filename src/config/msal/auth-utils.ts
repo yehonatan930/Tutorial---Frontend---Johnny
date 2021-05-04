@@ -57,12 +57,11 @@ export const GRAPH_REQUESTS = {
 export const msalApp = new UserAgentApplication({
   auth: {
     //@ts-ignore
-    clientId: "1c5e04df-0293-4b70-9c62-edc0f3e0b49a",
-    authority:
-      "https://login.microsoftonline.com/78820852-55fa-450b-908d-45c0d911e76b",
+    clientId: process.env.REACT_APP_CLIENT_ID,
+    authority: process.env.REACT_APP_AUTHORITY,
     validateAuthority: false,
     navigateToLoginRequestUrl: true,
-    redirectUri: "http://localhost:3000/",
+    redirectUri: process.env.REACT_APP_REDIRECT_URI,
   },
   cache: {
     cacheLocation: "sessionStorage",
