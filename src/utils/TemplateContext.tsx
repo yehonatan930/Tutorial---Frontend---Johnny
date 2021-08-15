@@ -6,6 +6,7 @@ import TemplateService from "../services/template.service";
 export interface TemplateProperties {
   templates:Template[];
   updateTemplates: (templates:Template[]) => void;
+  refreshContext: ()=>void;
 }
 
 // The context Itself
@@ -18,6 +19,7 @@ export class TemplateProvider extends React.Component<{}, TemplateProperties> {
     this.state = {
       templates:[],
       updateTemplates: (_templates:Template[])=>{},
+      refreshContext: this.refreshContext
     };
     this.setState({...this.state,updateTemplates:this.updateTemplates})
     // getting the Whole data from the API
