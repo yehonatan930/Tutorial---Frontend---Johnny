@@ -13,7 +13,6 @@ const axiosConfig: AxiosRequestConfig = {
     "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
     "Access-Control-Allow-Headers":
       "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
-    "Access-Control-Allow-Credentials": "true",
   },
   withCredentials:true
 };
