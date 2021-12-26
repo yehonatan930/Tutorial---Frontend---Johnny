@@ -26,6 +26,7 @@ export const onSignIn = async (redirect = true) => {
   const loginResponse = await msalApp.loginPopup(GRAPH_REQUESTS.LOGIN).catch((error: any) => {
     console.log(error);
   });
+  
 
   if (!loginResponse) {
     return;
@@ -55,6 +56,10 @@ export const getUserProfileByID = async (id: string) => {
     });
 };
 
+export const logout = ()=>{
+  msalApp.logout();
+}
+
 export const runApp = async (app: JSX.Element): Promise<JSX.Element> => {
   appInsights.trackEvent({name:"Started"},{time: new Date().toISOString()});
   msalApp.handleRedirectCallback((authCallback: any) => {
@@ -72,7 +77,7 @@ export const runApp = async (app: JSX.Element): Promise<JSX.Element> => {
 
   //console.log(tokenResponse.idToken);
   AxiosInstance.interceptors.request.use((config) => {
-    config.headers.Authorization = "Bearer " + tokenResponse.idToken.rawIdToken;
+    config.headers!.Authorization = "Bearer " + tokenResponse.idToken.rawIdToken;
     return config;
   });
 

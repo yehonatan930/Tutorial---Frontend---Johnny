@@ -9,7 +9,7 @@ const axiosConfig: AxiosRequestConfig = {
     "Access-Control-Allow-Origin": [
       process.env.REACT_APP_BASE_URL,
       process.env.REACT_APP_REDIRECT_URI,
-    ],
+    ].join(','),
     "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
     "Access-Control-Allow-Headers":
       "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",

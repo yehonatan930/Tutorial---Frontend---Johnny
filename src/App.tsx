@@ -1,8 +1,9 @@
 import './App.css';
-import { Typography} from '@material-ui/core'
+import { Button, Typography} from '@material-ui/core'
 // import { Banner, HalfPage, StickyHalfPage } from './ads/src/ads/ads';
 import { TemplateExhibitor } from './components/TemplatesExhibitor';
 import { TemplateProvider } from './utils/TemplateContext';
+import { logout } from './config/msal';
 
 // import LyingKitbag from "./ads/src/ads/LyingK.jpg";
 // import Madim from "./ads/src/ads/madim.jpg";
@@ -14,6 +15,7 @@ function App() {
 
         <header className="App-header">
           {/* <StickyHalfPage href={'https://madim-develop.azurewebsites.net/#/home'} image={Madim}></StickyHalfPage> */}
+          <Button onClick={logout}>Sign out</Button>
 
           <Typography variant='h1'>This is a Template page</Typography>
           

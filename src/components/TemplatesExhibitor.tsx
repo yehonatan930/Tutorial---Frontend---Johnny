@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme: Theme)=>
       },
       heading: {
         fontSize: theme.typography.pxToRem(15),
-        fontWeight: theme.typography.fontWeightRegular,
       }
   }
 ));
@@ -30,7 +29,7 @@ const Templates: React.FC<{
 }> = (props) => {
   const [Field1,SetField1] = useState<string>('');
   const [Field2,SetField2] = useState<string>('');
-  const [cookie,_] = useCookies(['csrf-token']);
+  const [cookie,] = useCookies(['csrf-token']);
 
   const classes = useStyles();
 
