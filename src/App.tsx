@@ -1,5 +1,5 @@
 import './App.css';
-import { Button, Typography} from '@material-ui/core'
+import { Typography} from '@material-ui/core'
 // import { Banner, HalfPage, StickyHalfPage } from './ads/src/ads/ads';
 import { TemplateExhibitor } from './components/TemplatesExhibitor';
 import { TemplateProvider } from './utils/TemplateContext';

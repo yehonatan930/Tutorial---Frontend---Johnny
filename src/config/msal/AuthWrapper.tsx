@@ -4,7 +4,7 @@ import AxiosInstance from "../../utils/axios.instance";
 import { authRequest } from "./authConfig";
 
 const AuthWrapper: React.FC = ({ children }) => {
-  const { instance, accounts, inProgress } = useMsal();
+  const { instance, accounts  } = useMsal();
   const account = useAccount(accounts[0] || {});
   const [isTokenAcuired, setIsTokenAcuired] = useState(false);
   useEffect(() => {
