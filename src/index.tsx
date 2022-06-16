@@ -3,12 +3,26 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { runApp } from "./config/msal";
+import { msalInstance } from "./config/msal";
+import AuthWrapper from './config/msal/AuthWrapper';
+import { MsalAuthenticationTemplate, MsalProvider } from '@azure/msal-react';
+import { authRequest } from './config/msal/authConfig';
+import { InteractionType } from '@azure/msal-browser';
 
 (async () => {
-  let myApp = await runApp(  <React.StrictMode>
-    <App />
-  </React.StrictMode>)
+  let myApp = <React.StrictMode>
+    <MsalProvider instance={msalInstance}>
+      <MsalAuthenticationTemplate 
+            interactionType={InteractionType.Redirect} 
+            authenticationRequest={authRequest}
+            errorComponent={()=><div>ERROR, PANIC!!</div>}
+            loadingComponent={()=><div>LOADING, wait a little :)</div>}>
+        <AuthWrapper>
+          <App />
+        </AuthWrapper>
+      </MsalAuthenticationTemplate>
+    </MsalProvider>
+  </React.StrictMode>
     ReactDOM.render(myApp, document.getElementById("root"));
 
 })();
