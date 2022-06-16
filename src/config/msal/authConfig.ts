@@ -7,8 +7,6 @@ export const msalConfig: Configuration = {
     authority: process.env.REACT_APP_AUTHORITY,
     navigateToLoginRequestUrl: true,
     redirectUri: process.env.REACT_APP_REDIRECT_URI,
-    
-    // authorityMetadata: "https://login.microsoftonline.com/" + "78820852-55fa-450b-908d-45c0d911e76b" + "/v2.0/.well-known/openid-configuration/"
   },
   cache: {
     cacheLocation: "sessionStorage", // This configures where your cache will be stored
@@ -22,7 +20,6 @@ export const loginRequest = {
 };
 
 export const authRequest = {
-    // scopes: ["openid", "profile"],
   scopes: [
     "api://template/access",//TODO
     "openid",
