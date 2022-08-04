@@ -22,8 +22,8 @@ import { InteractionType } from '@azure/msal-browser';
         </AuthWrapper>
       </MsalAuthenticationTemplate>
     </MsalProvider>
-  </React.StrictMode>
-    ReactDOM.render(myApp, document.getElementById("root"));
+  </React.StrictMode>;
+  ReactDOM.render(myApp, document.getElementById("root"));
 
 })();
  

@@ -1,5 +1,16 @@
-import { isIE } from "./auth-utils";
 import { Configuration } from "@azure/msal-browser";
+
+const isIE = () => {
+  const ua = window.navigator.userAgent;
+  const msie = ua.indexOf("MSIE ") > -1;
+  const msie11 = ua.indexOf("Trident/") > -1;
+
+  // If you as a developer are testing using Edge InPrivate mode, please add "isEdge" to the if check
+  // const isEdge = ua.indexOf("Edge/") > -1;
+
+  return msie || msie11;
+};
+
 
 export const msalConfig: Configuration = {
   auth: {
