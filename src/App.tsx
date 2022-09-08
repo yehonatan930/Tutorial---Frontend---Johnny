@@ -1,30 +1,13 @@
-import './App.css';
-import { Typography} from '@material-ui/core'
-// import { Banner, HalfPage, StickyHalfPage } from './ads/src/ads/ads';
-import { TemplateExhibitor } from './components/TemplatesExhibitor';
-import { TemplateProvider } from './utils/TemplateContext';
-// import { logout } from './config/msal';
-
-// import LyingKitbag from "./ads/src/ads/LyingK.jpg";
-// import Madim from "./ads/src/ads/madim.jpg";
+import "./App.css";
+import { MainPage } from "./components/pages/MainPage/MainPage";
+import { UserProvider } from "./utils/UserContext";
 
 function App() {
   return (
     <div className="App">
-      <TemplateProvider>
-
-        <header className="App-header">
-          {/* <StickyHalfPage href={'https://madim-develop.azurewebsites.net/#/home'} image={Madim}></StickyHalfPage> */}
-          {/* <Button onClick={logout}>Sign out</Button> */}
-
-          <Typography variant='h1'>This is a Template page</Typography>
-          
-          <TemplateExhibitor/>
-
-        </header>
-        {/* <Banner href={"https://kitbag.prat.idf.il/#"} image={LyingKitbag}></Banner> */}
-      </TemplateProvider>
-
+      <UserProvider>
+        <MainPage />
+      </UserProvider>
     </div>
   );
 }
