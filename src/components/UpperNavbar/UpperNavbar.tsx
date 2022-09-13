@@ -12,7 +12,7 @@ export default function UpperNavbar() {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color="white">
+        <AppBar position="static">
           <Toolbar>
             <IconButton
               size="large"
