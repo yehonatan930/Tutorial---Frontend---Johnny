@@ -4,8 +4,6 @@ const defaultTheme = createTheme({
   palette: {
     primary: {
       main: "#CC444B", // vermilion
-      dark: "#ffffff", // white
-      light: "#ffffff", // white
       contrastText: "#ffffff", // white
     },
     secondary: {
