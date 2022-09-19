@@ -1,15 +1,21 @@
 import "./App.css";
+import { ThemeProvider } from "@mui/material/styles";
 import { MainPage } from "./components/pages/MainPage/MainPage";
-import UpperNavbar from "./components/UpperNavbar/UpperNavbar";
 import { UserProvider } from "./utils/UserContext";
+import { defaultTheme } from "./utils/theme";
+import LowerNavbar from "./components/LowerNavbar/LowerNavbar";
+import UpperNavbar from "./components/UpperNavbar/UpperNavbar";
 
 function App() {
   return (
     <div className="App">
-      <UpperNavbar></UpperNavbar>
-      <UserProvider>
-        <MainPage />
-      </UserProvider>
+      <ThemeProvider theme={defaultTheme}>
+        <UpperNavbar></UpperNavbar>
+        <UserProvider>
+          <MainPage />
+        </UserProvider>
+        <LowerNavbar></LowerNavbar>
+      </ThemeProvider>
     </div>
   );
 }

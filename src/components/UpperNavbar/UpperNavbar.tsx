@@ -13,20 +13,24 @@ export default function UpperNavbar() {
     <>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
-          <Toolbar>
+          <Toolbar
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
             <IconButton
               size="large"
               edge="start"
-              color="inherit"
               aria-label="exit"
-              sx={{ mr: 2 }}
+              sx={{ position: "absolute", left: 12 }}
             >
               <CloseIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              News
+            <Typography variant="h6" component="div" sx={{}}>
+              Instagram
             </Typography>
-            <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
       </Box>

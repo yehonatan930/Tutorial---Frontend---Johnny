@@ -1,12 +1,22 @@
 import { createTheme } from "@mui/material/styles";
 
-export default createTheme({
+const defaultTheme = createTheme({
   palette: {
     primary: {
-      main: "#ffffff",
+      main: "#CC444B", // vermilion
+      dark: "#ffffff", // white
+      light: "#ffffff", // white
+      contrastText: "#ffffff", // white
     },
     secondary: {
-      main: "#000000",
+      main: "#f50057",
+      contrastText: "#4e3434",
     },
+    text: { secondary: "#E08F93" }, // pink
+  },
+  typography: {
+    fontFamily: "'Abril Fatface', 'cursive'",
   },
 });
+
+export { defaultTheme };
