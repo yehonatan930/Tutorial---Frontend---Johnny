@@ -1,5 +1,5 @@
 import { ListItem, ListItemText, styled } from "@mui/material";
-import { User } from "../../../models/user.model";
+import { User } from "../../../models/User";
 
 interface IProps {
   user: User;
@@ -14,10 +14,7 @@ const StyledListItem = styled(ListItem)`
 export const UserListItem: React.FC<IProps> = ({ user }) => {
   return (
     <StyledListItem>
-      <ListItemText
-        primary={`${user.firstName} ${user.lastName}`}
-        secondary={user.age}
-      ></ListItemText>
+      <ListItemText primary={user.name}></ListItemText>
     </StyledListItem>
   );
 };

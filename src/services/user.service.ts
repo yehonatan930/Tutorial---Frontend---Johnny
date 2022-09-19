@@ -1,4 +1,4 @@
-import { User } from "../models/user.model";
+import { User } from "../models/User";
 import AxiosInstance from "../utils/axios.instance";
 
 export default class UserService {
