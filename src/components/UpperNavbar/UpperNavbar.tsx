@@ -8,10 +8,14 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-export default function UpperNavbar() {
+interface UpperNavbarProps {
+  page: "" | "newPost" | "profile"
+}
+
+const UpperNavbar = ({page}: UpperNavbarProps) => {
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{}}>
         <AppBar position="static">
           <Toolbar
             sx={{
@@ -29,7 +33,7 @@ export default function UpperNavbar() {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{}}>
-              Instagram
+            {page === "" ? "Instagram" : page === "newPost" ? "Create New Post" : "My Profile"}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -37,3 +41,5 @@ export default function UpperNavbar() {
     </>
   );
 }
+
+export default UpperNavbar;

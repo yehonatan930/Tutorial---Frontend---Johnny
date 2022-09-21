@@ -1,11 +1,9 @@
-import { Typography } from "@mui/material";
 import Post from "./Post";
-import { UserForm } from "./UserForm";
-import { UserList } from "./UserList";
 
 export const MainPage = () => {
   return (
     <>
+      <h1>hey</h1>
       <Post></Post>
     </>
   );
