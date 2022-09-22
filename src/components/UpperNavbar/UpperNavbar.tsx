@@ -7,12 +7,13 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { page } from "../../utils/types";
 
 interface UpperNavbarProps {
-  page: "" | "newPost" | "profile"
+  page: page;
 }
 
-const UpperNavbar = ({page}: UpperNavbarProps) => {
+const UpperNavbar = ({ page }: UpperNavbarProps) => {
   return (
     <>
       <Box sx={{}}>
@@ -33,13 +34,17 @@ const UpperNavbar = ({page}: UpperNavbarProps) => {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{}}>
-            {page === "" ? "Instagram" : page === "newPost" ? "Create New Post" : "My Profile"}
+              {page === ""
+                ? "Instagram"
+                : page === "newPost"
+                ? "Create New Post"
+                : "My Profile"}
             </Typography>
           </Toolbar>
         </AppBar>
       </Box>
     </>
   );
-}
+};
 
 export default UpperNavbar;

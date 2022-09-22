@@ -1,7 +1,7 @@
 import "./App.css";
 import { ThemeProvider } from "@mui/material/styles";
 import { MainPage } from "./components/pages/MainPage/MainPage";
-import { UserProvider } from "./utils/UserContext";
+import { UserProvider } from "./contexts/UserContext";
 import { defaultTheme } from "./utils/theme";
 import LowerNavbar from "./components/LowerNavbar/LowerNavbar";
 import UpperNavbar from "./components/UpperNavbar/UpperNavbar";
