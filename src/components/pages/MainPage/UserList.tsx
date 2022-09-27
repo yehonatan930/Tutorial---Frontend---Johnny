@@ -1,6 +1,6 @@
 import { List } from "@mui/material";
 import { useContext } from "react";
-import { UserContext } from "../../../utils/UserContext";
+import { UserContext } from "../../../contexts/UserContext";
 import { UserListItem } from "./UserListItem";
 
 export const UserList = () => {

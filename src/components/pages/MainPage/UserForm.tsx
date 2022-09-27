@@ -1,7 +1,7 @@
 import { Button, Paper, TextField } from "@mui/material";
 import { ChangeEvent, FormEvent, useContext, useState } from "react";
 import UserService from "../../../services/user.service";
-import { UserContext } from "../../../utils/UserContext";
+import { UserContext } from "../../../contexts/UserContext";
 
 export const UserForm = () => {
   const userCtx = useContext(UserContext);
