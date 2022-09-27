@@ -5,25 +5,29 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeIcon from "@mui/icons-material/Home";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import TableBarIcon from "@mui/icons-material/TableBar";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Page } from "../../utils/types";
 
-const LowerNavbar = () => {
-  const [page, setPage] = React.useState("");
+interface LowerNavbarProps {
+  currentPage: Page;
+  setCurrentPage: (page: Page) => void;
+}
 
+const LowerNavbar = ({ currentPage, setCurrentPage }: LowerNavbarProps) => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    navigate(`/${page}`);
-  }, [page]);
+    navigate(`/${currentPage}`);
+  }, [currentPage]);
 
-  const handleChange = (event: React.SyntheticEvent, newPage: string) => {
-    setPage(newPage);
+  const handleChange = (event: React.SyntheticEvent, newPage: Page) => {
+    setCurrentPage(newPage);
   };
   return (
     <>
       <BottomNavigation
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-        value={page}
+        value={currentPage}
         onChange={handleChange}
       >
         <BottomNavigationAction
@@ -34,8 +38,7 @@ const LowerNavbar = () => {
         <BottomNavigationAction
           value="newPost"
           icon={<AddPhotoAlternateIcon />}
-        >
-        </BottomNavigationAction>
+        ></BottomNavigationAction>
         <BottomNavigationAction
           value="profile"
           icon={<TableBarIcon />}

@@ -4,16 +4,15 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { page } from "../../utils/types";
+import { Page } from "../../utils/types";
 
 interface UpperNavbarProps {
-  page: page;
+  currentPage: Page;
 }
 
-const UpperNavbar = ({ page }: UpperNavbarProps) => {
+const UpperNavbar = ({ currentPage }: UpperNavbarProps) => {
   return (
     <>
       <Box sx={{}}>
@@ -34,9 +33,9 @@ const UpperNavbar = ({ page }: UpperNavbarProps) => {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{}}>
-              {page === ""
+              {currentPage === ""
                 ? "Instagram"
-                : page === "newPost"
+                : currentPage === "newPost"
                 ? "Create New Post"
                 : "My Profile"}
             </Typography>

@@ -9,13 +9,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NewPost from "./components/pages/NewPost/NewPost";
 import Profile from "./components/pages/Profile/Profile";
 import NoPage from "./components/pages/NoPage/NoPage";
+import { useState } from "react";
+import { Page } from "./utils/types";
 
-function App() {
+const App = () => {
+  const [currentPage, setCurrentPage] = useState<Page>("");
+
   return (
     <div className="App">
       <ThemeProvider theme={defaultTheme}>
         <BrowserRouter>
-          <UpperNavbar></UpperNavbar>
+          <UpperNavbar currentPage={currentPage}></UpperNavbar>
           <Routes>
             <Route index element={<MainPage />} />
             <Route path="/newPost" element={<NewPost />} />
@@ -25,11 +29,14 @@ function App() {
           {/* <UserProvider>
           <MainPage />
         </UserProvider> */}
-          <LowerNavbar></LowerNavbar>
+          <LowerNavbar
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          ></LowerNavbar>
         </BrowserRouter>
       </ThemeProvider>
     </div>
   );
-}
+};
 
 export default App;
