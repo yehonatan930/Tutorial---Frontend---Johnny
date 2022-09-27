@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .App {
   background-color: #ffffff;
@@ -9,4 +10,5 @@
   /* align-items: center;
   justify-content: center; */
   /* font-size: calc(10px + 2vmin); */
+  /* font-family: roboto, sans-serif; */
 }

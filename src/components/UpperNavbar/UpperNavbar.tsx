@@ -24,15 +24,21 @@ const UpperNavbar = ({ currentPage }: UpperNavbarProps) => {
               justifyContent: "center",
             }}
           >
-            <IconButton
-              size="large"
-              edge="start"
-              aria-label="exit"
-              sx={{ position: "absolute", left: 12 }}
+            {currentPage !== "" && (
+              <IconButton
+                size="large"
+                edge="start"
+                aria-label="exit"
+                sx={{ position: "absolute", left: 12 }}
+              >
+                <CloseIcon />
+              </IconButton>
+            )}
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ fontFamily: "'Abril Fatface', 'cursive'" }}
             >
-              <CloseIcon />
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{}}>
               {currentPage === ""
                 ? "Instagram"
                 : currentPage === "newPost"

@@ -13,7 +13,7 @@ const defaultTheme = createTheme({
     text: { secondary: "#E08F93" }, // pink
   },
   typography: {
-    fontFamily: "'Abril Fatface', 'cursive'",
+    // fontFamily: "'Abril Fatface', 'cursive'",
   },
 });
 
