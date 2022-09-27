@@ -1,5 +1,5 @@
 import { ListItem, ListItemText, styled } from "@mui/material";
-import { User } from "../../models/User";
+import User from "../../models/User";
 
 interface IProps {
   user: User;

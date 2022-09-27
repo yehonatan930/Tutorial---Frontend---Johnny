@@ -1,6 +1,6 @@
-import { Post } from "./Post";
+import Post from "./Post";
 
-export class User {
+export default class User {
   name: string;
   avatarSrc: string;
   posts: Post[];

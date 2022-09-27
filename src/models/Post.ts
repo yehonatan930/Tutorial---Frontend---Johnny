@@ -1,6 +1,6 @@
-import { User } from "./User";
+import User from "./User";
 
-export class Post {
+export default class Post {
   id: number;
   photoSrc: string;
   createdAt: Date;
