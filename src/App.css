@@ -10,5 +10,14 @@
   /* align-items: center;
   justify-content: center; */
   /* font-size: calc(10px + 2vmin); */
-  /* font-family: roboto, sans-serif; */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
+* {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
 }
