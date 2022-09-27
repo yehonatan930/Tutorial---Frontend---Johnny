@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { User } from "../models/User";
+import User from "../models/User";
 import UserService from "../services/user.service";
 
 export interface IUserContext {
