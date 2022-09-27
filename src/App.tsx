@@ -1,14 +1,13 @@
 import "./App.css";
 import { ThemeProvider } from "@mui/material/styles";
-import { MainPage } from "./components/pages/MainPage/MainPage";
-import { UserProvider } from "./contexts/UserContext";
+import { MainPage } from "./pages/MainPage/MainPage";
 import { defaultTheme } from "./utils/theme";
 import LowerNavbar from "./components/LowerNavbar/LowerNavbar";
 import UpperNavbar from "./components/UpperNavbar/UpperNavbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NewPost from "./components/pages/NewPost/NewPost";
-import Profile from "./components/pages/Profile/Profile";
-import NoPage from "./components/pages/NoPage/NoPage";
+import NewPost from "./pages/NewPost/NewPost";
+import Profile from "./pages/Profile/Profile";
+import NoPage from "./pages/NoPage/NoPage";
 import { useState } from "react";
 import { Page } from "./utils/types";
 
