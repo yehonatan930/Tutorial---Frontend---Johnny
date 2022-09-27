@@ -10,13 +10,18 @@ import { Page } from "../../utils/types";
 
 interface UpperNavbarProps {
   currentPage: Page;
+  setCurrentPage: (page: Page) => void;
 }
 
-const UpperNavbar = ({ currentPage }: UpperNavbarProps) => {
+const UpperNavbar = ({ currentPage, setCurrentPage }: UpperNavbarProps) => {
+  const goToHome = () => {
+    setCurrentPage("");
+  };
+
   return (
     <>
-      <Box sx={{}}>
-        <AppBar position="static">
+      <Box>
+        <AppBar position="fixed">
           <Toolbar
             sx={{
               display: "flex",
@@ -30,6 +35,7 @@ const UpperNavbar = ({ currentPage }: UpperNavbarProps) => {
                 edge="start"
                 aria-label="exit"
                 sx={{ position: "absolute", left: 12 }}
+                onClick={goToHome}
               >
                 <CloseIcon />
               </IconButton>

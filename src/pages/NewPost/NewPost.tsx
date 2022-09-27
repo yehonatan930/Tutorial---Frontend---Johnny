@@ -1,5 +1,4 @@
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import LoadingButton from "@mui/lab/LoadingButton";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
@@ -7,8 +6,13 @@ import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
 import { useState } from "react";
 import "./NewPost.css";
+import { Page } from "../../utils/types";
 
-const NewPost = () => {
+interface NewPostProps {
+  setCurrentPage: (page: Page) => void;
+}
+
+const NewPost = ({ setCurrentPage }: NewPostProps) => {
   const [imageURL, setImageURL] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -26,6 +30,8 @@ const NewPost = () => {
     await delay(2000);
 
     setLoading(false);
+
+    setCurrentPage("profile");
   };
 
   return (
@@ -36,7 +42,7 @@ const NewPost = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "start",
+        justifyContent: "flex-start",
       }}
       noValidate
       autoComplete="off"

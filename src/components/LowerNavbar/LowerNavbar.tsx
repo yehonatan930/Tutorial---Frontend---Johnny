@@ -5,7 +5,6 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeIcon from "@mui/icons-material/Home";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import TableBarIcon from "@mui/icons-material/TableBar";
-import { useNavigate } from "react-router-dom";
 import { Page } from "../../utils/types";
 
 interface LowerNavbarProps {
@@ -14,12 +13,6 @@ interface LowerNavbarProps {
 }
 
 const LowerNavbar = ({ currentPage, setCurrentPage }: LowerNavbarProps) => {
-  const navigate = useNavigate();
-
-  React.useEffect(() => {
-    navigate(`/${currentPage}`);
-  }, [currentPage]);
-
   const handleChange = (event: React.SyntheticEvent, newPage: Page) => {
     setCurrentPage(newPage);
   };
