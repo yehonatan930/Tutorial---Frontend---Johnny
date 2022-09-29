@@ -67,6 +67,7 @@ const NewPost = ({ setCurrentPage }: NewPostProps) => {
         loading="lazy"
       />
       <LoadingButton
+        fullWidth
         loading={loading}
         variant="contained"
         disableElevation
