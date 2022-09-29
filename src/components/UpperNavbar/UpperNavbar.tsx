@@ -21,7 +21,13 @@ const UpperNavbar = ({ currentPage, setCurrentPage }: UpperNavbarProps) => {
   return (
     <>
       <Box>
-        <AppBar position="fixed">
+        <AppBar
+          sx={{
+            position: "relative",
+            height: "56px",
+            width: "100vw",
+          }}
+        >
           <Toolbar
             sx={{
               display: "flex",
@@ -37,7 +43,7 @@ const UpperNavbar = ({ currentPage, setCurrentPage }: UpperNavbarProps) => {
                 sx={{ position: "absolute", left: 12 }}
                 onClick={goToHome}
               >
-                <CloseIcon />
+                <CloseIcon sx={{ color: "#313638" }} />
               </IconButton>
             )}
             <Typography

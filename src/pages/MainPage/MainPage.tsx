@@ -18,6 +18,9 @@ const MainPage = () => {
       <PostCard {...post}></PostCard>
       <PostCard {...post}></PostCard>
       <PostCard {...post}></PostCard>
+      <PostCard {...post}></PostCard>
+      <PostCard {...post}></PostCard>
+      <PostCard {...post}></PostCard>
     </div>
   );
 };

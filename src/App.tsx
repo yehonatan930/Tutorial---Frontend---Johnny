@@ -26,15 +26,17 @@ const App = () => {
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         ></UpperNavbar>
-        <Routes>
-          <Route index element={<MainPage />} />
-          <Route
-            path="/newPost"
-            element={<NewPost setCurrentPage={setCurrentPage} />}
-          />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/*" element={<NoPage />} />
-        </Routes>
+        <div className="pages-container">
+          <Routes>
+            <Route index element={<MainPage />} />
+            <Route
+              path="/newPost"
+              element={<NewPost setCurrentPage={setCurrentPage} />}
+            />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/*" element={<NoPage />} />
+          </Routes>
+        </div>
         {/* <UserProvider>
           <MainPage />
         </UserProvider> */}
