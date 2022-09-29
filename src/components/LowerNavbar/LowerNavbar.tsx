@@ -19,7 +19,15 @@ const LowerNavbar = ({ currentPage, setCurrentPage }: LowerNavbarProps) => {
   return (
     <>
       <BottomNavigation
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "56px",
+          boxShadow:
+            "rgb(0 0 0 / 20%) 0px 3px 3px -2px, rgb(0 0 0 / 14%) 0px 3px 4px 0px, rgb(0 0 0 / 12%) 0px 1px 8px 0px",
+        }}
         value={currentPage}
         onChange={handleChange}
       >
