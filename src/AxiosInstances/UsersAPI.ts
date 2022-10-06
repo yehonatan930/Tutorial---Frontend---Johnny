@@ -20,8 +20,10 @@ export default class UsersAPI extends HttpClient {
 
   public getUser = async (id: string) => await this.instance.get<User>(`${id}`);
 
-  public getLoggedInUser = async () =>
-    await this.instance.get<User>(`currentLoggedIn`);
+  public getLoggedInUser = async () => {
+    const user = await this.instance.get<User>(`currentLoggedIn`);
+    return user;
+  };
 
   public deleteUser = async (id: string) =>
     await this.instance.delete<User>(`${id}`);

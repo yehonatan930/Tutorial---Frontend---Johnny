@@ -4,7 +4,6 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import HomeIcon from "@mui/icons-material/Home";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import TableBarIcon from "@mui/icons-material/TableBar";
 import { Page } from "../../utils/types";
 import Avatar from "@mui/material/Avatar";
 import { useContext } from "react";
@@ -23,8 +22,6 @@ const LowerNavbar = ({ currentPage, setCurrentPage }: LowerNavbarProps) => {
 
   const loggedInUserContext = useContext(LoggedInUserContext);
   const user: User = loggedInUserContext.user!;
-
-  console.log(user);
 
   return (
     <>
@@ -45,14 +42,21 @@ const LowerNavbar = ({ currentPage, setCurrentPage }: LowerNavbarProps) => {
           value=""
           icon={<HomeIcon />}
         ></BottomNavigationAction>
-
         <BottomNavigationAction
           value="newPost"
           icon={<AddPhotoAlternateIcon />}
         ></BottomNavigationAction>
         <BottomNavigationAction
           value="profile"
-          icon={<Avatar src={user.avatarSrc}></Avatar>}
+          icon={
+            <Avatar
+              src={
+                user
+                  ? user.avatarSrc
+                  : "https://3znvnpy5ek52a26m01me9p1t-wpengine.netdna-ssl.com/wp-content/uploads/2017/07/noimage_person.png"
+              }
+            ></Avatar>
+          }
         ></BottomNavigationAction>
       </BottomNavigation>
     </>
