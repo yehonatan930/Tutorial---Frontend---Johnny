@@ -6,6 +6,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import TableBarIcon from "@mui/icons-material/TableBar";
 import { Page } from "../../utils/types";
+import Avatar from "@mui/material/Avatar";
+import { useContext } from "react";
+import { LoggedInUserContext } from "../../contexts/LoggedInUserContext";
+import User from "../../models/User";
 
 interface LowerNavbarProps {
   currentPage: Page;
@@ -16,6 +20,12 @@ const LowerNavbar = ({ currentPage, setCurrentPage }: LowerNavbarProps) => {
   const handleChange = (event: React.SyntheticEvent, newPage: Page) => {
     setCurrentPage(newPage);
   };
+
+  const loggedInUserContext = useContext(LoggedInUserContext);
+  const user: User = loggedInUserContext.user!;
+
+  console.log(user);
+
   return (
     <>
       <BottomNavigation
@@ -42,7 +52,7 @@ const LowerNavbar = ({ currentPage, setCurrentPage }: LowerNavbarProps) => {
         ></BottomNavigationAction>
         <BottomNavigationAction
           value="profile"
-          icon={<TableBarIcon />}
+          icon={<Avatar src={user.avatarSrc}></Avatar>}
         ></BottomNavigationAction>
       </BottomNavigation>
     </>
