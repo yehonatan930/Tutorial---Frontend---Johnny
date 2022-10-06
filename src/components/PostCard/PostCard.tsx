@@ -6,31 +6,23 @@ import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { red } from "@mui/material/colors";
-import Post from "../../models/Post";
 import Typography from "@mui/material/Typography";
-
-export interface PostCardProps {
-  photoSrc: string;
-  createdAt: Date;
-  avaterSrc: string;
-  userName: string;
-  likesNum: number;
-  isLikedByCurrentUser: boolean;
-}
+import PostDTO from "../../models/PostDTO";
+import moment from "moment";
 
 const PostCard = ({
   photoSrc,
   createdAt,
-  avaterSrc,
+  avatarSrc,
   userName,
   likesNum,
   isLikedByCurrentUser,
-}: PostCardProps) => {
+}: PostDTO) => {
   return (
     <>
       <Card
         sx={{
+          width: "100%",
           borderRadius: 0,
           borderTop: 0,
           borderRight: 0,
@@ -40,7 +32,7 @@ const PostCard = ({
         variant="outlined"
       >
         <CardHeader
-          avatar={<Avatar src={avaterSrc}></Avatar>}
+          avatar={<Avatar src={avatarSrc}></Avatar>}
           title={userName}
         />
         <CardMedia component="img" height="194" image={photoSrc} />
@@ -50,7 +42,7 @@ const PostCard = ({
           </IconButton>
           <Typography>{likesNum}</Typography>
           <Typography sx={{ ml: "auto" }}>
-            {createdAt.toLocaleString()}
+            {moment(createdAt).fromNow()}
           </Typography>
         </CardActions>
       </Card>

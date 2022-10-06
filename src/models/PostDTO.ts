@@ -2,7 +2,7 @@ export default class PostDTO {
   id: number;
   photoSrc: string;
   createdAt: Date;
-  avaterSrc: string;
+  avatarSrc: string;
   userName: string;
   likesNum: number;
   isLikedByCurrentUser: boolean;
@@ -19,7 +19,7 @@ export default class PostDTO {
     this.id = id;
     this.photoSrc = photoSrc;
     this.createdAt = createdAt;
-    this.avaterSrc = avatarSrc;
+    this.avatarSrc = avatarSrc;
     this.createdAt = createdAt;
     this.userName = userName;
     this.likesNum = likesNum;
