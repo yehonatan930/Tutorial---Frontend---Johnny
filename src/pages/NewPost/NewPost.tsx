@@ -4,9 +4,13 @@ import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./NewPost.css";
 import { Page } from "../../utils/types";
+import PostsAPI from "../../api/PostsAPI";
+import Post from "../../models/Post";
+import User from "../../models/User";
+import { LoggedInUserContext } from "../../contexts/LoggedInUserContext";
 
 interface NewPostProps {
   setCurrentPage: (page: Page) => void;
@@ -15,6 +19,9 @@ interface NewPostProps {
 const NewPost = ({ setCurrentPage }: NewPostProps) => {
   const [imageURL, setImageURL] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
+  const loggedInUserContext = useContext(LoggedInUserContext);
+  const user: User = loggedInUserContext.user!;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setImageURL(event.target.value);
@@ -26,6 +33,10 @@ const NewPost = ({ setCurrentPage }: NewPostProps) => {
 
   const createPost = async () => {
     setLoading(true);
+
+    await PostsAPI.getInstance().savePost(
+      new Post(imageURL, new Date(), user, [])
+    );
 
     await delay(2000);
 

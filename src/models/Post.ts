@@ -1,20 +1,13 @@
 import User from "./User";
 
 export default class Post {
-  id: number;
+  id: number | undefined;
   photoSrc: string;
   createdAt: Date;
   user: User;
   likes: User[];
 
-  constructor(
-    id: number,
-    photoSrc: string,
-    createdAt: Date,
-    user: User,
-    likes: User[]
-  ) {
-    this.id = id;
+  constructor(photoSrc: string, createdAt: Date, user: User, likes: User[]) {
     this.photoSrc = photoSrc;
     this.createdAt = createdAt;
     this.user = user;
