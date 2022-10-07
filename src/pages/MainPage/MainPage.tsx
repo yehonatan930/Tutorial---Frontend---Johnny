@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PostsAPI from "../../api/PostsAPI";
 import PostCard from "../../components/PostCard/PostCard";
+import PostsList from "../../components/PostsList/PostsList";
 import PostDTO from "../../models/PostDTO";
 import "./MainPage.css";
 
@@ -16,11 +17,9 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div id="main-page--container">
-      {allPosts.map((post) => {
-        return <PostCard key={post.id} {...post}></PostCard>;
-      })}
-    </div>
+    <>
+      <PostsList posts={allPosts}></PostsList>
+    </>
   );
 };
 
