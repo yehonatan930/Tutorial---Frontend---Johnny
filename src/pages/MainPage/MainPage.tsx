@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import PostsAPI from "../../AxiosInstances/PostsAPI";
+import PostsAPI from "../../api/PostsAPI";
 import PostCard from "../../components/PostCard/PostCard";
 import PostDTO from "../../models/PostDTO";
 import "./MainPage.css";
@@ -18,7 +18,6 @@ const MainPage = () => {
   return (
     <div id="main-page--container">
       {allPosts.map((post) => {
-        console.log(post);
         return <PostCard key={post.id} {...post}></PostCard>;
       })}
     </div>

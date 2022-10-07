@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import UsersAPI from "../AxiosInstances/UsersAPI";
+import UsersAPI from "../api/UsersAPI";
 import User from "../models/User";
 
 export interface IUserContext {

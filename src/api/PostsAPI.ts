@@ -25,4 +25,10 @@ export default class PostsAPI extends HttpClient {
 
   public deletePost = async (id: string) =>
     await this.instance.delete<Post>(`${id}`);
+
+  public savePost = async (post: Post) => {
+    console.log("saving post");
+    console.log(post);
+    return await this.instance.post<Post>("", post);
+  };
 }
