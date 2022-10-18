@@ -7,19 +7,46 @@ import PostsList from "../../components/PostsList/PostsList";
 import User from "../../models/User";
 import PostDTO from "../../models/PostDTO";
 import UsersAPI from "../../api/UsersAPI";
+import { useLocation } from "react-router-dom";
 
 const Profile = () => {
-  const loggedInUserContext = useContext(LoggedInUserContext);
-  const user = loggedInUserContext.user;
-
   const [userPosts, setUserPosts] = useState<PostDTO[]>([]);
+  const [user, setUser] = useState<User | undefined>(new User("", "", []));
+  const { state } = useLocation();
+  const loggedInUserContext = useContext(LoggedInUserContext);
+
+  const fetchUser = async (userName: User, isMounted: boolean) => {
+    console.log(userName);
+    if (isMounted) {
+      const { data } = await UsersAPI.getInstance().getUser(userName.name);
+      setUser(data);
+    }
+    // UsersAPI.getInstance().controller = null;
+  };
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (state?.userName) {
+      // fetchUser(state.userName, isMounted);
+    } else {
+      setUser(loggedInUserContext.user);
+    }
+
+    return () => {
+      isMounted = false;
+    };
+    // return () => {
+    //   UsersAPI.getInstance().controller?.abort();
+    // };
+  }, []);
 
   useEffect(() => {
     const getAllPostCardsOfUser = async (user: User) => {
       const { data } = await UsersAPI.getInstance().getUserPosts(user.name);
       setUserPosts(data);
     };
-    getAllPostCardsOfUser(user!);
+    user && getAllPostCardsOfUser(user);
   }, [user]);
 
   return (

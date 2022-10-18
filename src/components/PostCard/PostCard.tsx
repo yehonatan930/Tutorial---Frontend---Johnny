@@ -9,6 +9,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Typography from "@mui/material/Typography";
 import PostDTO from "../../models/PostDTO";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 const PostCard = ({
   photoSrc,
@@ -18,6 +19,12 @@ const PostCard = ({
   likesNum,
   isLikedByCurrentUser,
 }: PostDTO) => {
+  const navigate = useNavigate();
+
+  const goToProfile = () => {
+    navigate(`/profile/${userName}`, { state: { userName } });
+  };
+
   return (
     <>
       <Card
@@ -34,6 +41,7 @@ const PostCard = ({
         <CardHeader
           avatar={<Avatar src={avatarSrc}></Avatar>}
           title={userName}
+          onClick={goToProfile}
         />
         <CardMedia component="img" height="194" image={photoSrc} />
         <CardActions disableSpacing>
