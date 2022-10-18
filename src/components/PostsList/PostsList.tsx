@@ -8,9 +8,10 @@ interface PostsListProps {
 const PostsList = ({ posts }: PostsListProps) => {
   return (
     <div className="posts-list--container">
-      {posts.map((post) => {
-        return <PostCard key={post.id} {...post}></PostCard>;
-      })}
+      {posts &&
+        posts.map((post) => {
+          return <PostCard key={post.id} {...post}></PostCard>;
+        })}
     </div>
   );
 };
