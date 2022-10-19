@@ -18,6 +18,7 @@ export default class PostsAPI extends HttpClient {
   }
 
   public getAllPosts = async () => await this.instance.get<Post[]>("");
+
   public getAllPostCards = async () =>
     await this.instance.get<PostDTO[]>("postCards");
 
@@ -27,8 +28,14 @@ export default class PostsAPI extends HttpClient {
     await this.instance.delete<Post>(`${id}`);
 
   public savePost = async (post: Post) => {
-    console.log("saving post");
-    console.log(post);
     return await this.instance.post<Post>("", post);
+  };
+
+  public likePost = async (postId: number, userName: string) => {
+    return await this.instance.post<Post>(`${postId}/like/${userName}`);
+  };
+
+  public unLikePost = async (postId: number, userName: string) => {
+    return await this.instance.post<Post>(`${postId}/unLike/${userName}`);
   };
 }

@@ -10,8 +10,13 @@ import Typography from "@mui/material/Typography";
 import PostDTO from "../../models/PostDTO";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import PostsAPI from "../../api/PostsAPI";
+import User from "../../models/User";
+import { LoggedInUserContext } from "../../contexts/LoggedInUserContext";
 
 const PostCard = ({
+  id,
   photoSrc,
   createdAt,
   avatarSrc,
@@ -20,10 +25,41 @@ const PostCard = ({
   isLikedByCurrentUser,
 }: PostDTO) => {
   const navigate = useNavigate();
+  const [liked, setLiked] = useState<boolean>(isLikedByCurrentUser);
+  const [likesN, setLikesN] = useState(likesNum);
+  const loggedInUserContext = useContext(LoggedInUserContext);
+  const currentLoggedInUser: User = loggedInUserContext.user!;
+  const isFirstRun = useRef(true);
 
   const goToProfile = () => {
     navigate(`/profile/${userName}`, { state: { userName } });
   };
+
+  const onLike = () => {
+    console.log("onLike");
+    setLiked(!liked);
+  };
+
+  useEffect(() => {
+    const likePost = async () => {
+      console.log(liked);
+
+      if (liked) {
+        PostsAPI.getInstance().likePost(id, currentLoggedInUser.name);
+        setLikesN(likesN + 1);
+      } else {
+        PostsAPI.getInstance().unLikePost(id, currentLoggedInUser.name);
+        setLikesN(likesN - 1);
+      }
+    };
+
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
+    likePost();
+  }, [liked]);
 
   return (
     <>
@@ -45,16 +81,15 @@ const PostCard = ({
         />
         <CardMedia component="img" height="194" image={photoSrc} />
         <CardActions disableSpacing>
-          <IconButton color="error">
-            {isLikedByCurrentUser ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+          <IconButton color="error" onClick={onLike}>
+            {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </IconButton>
-          <Typography>{likesNum}</Typography>
+          <Typography>{likesN}</Typography>
           <Typography sx={{ ml: "auto" }}>
             {moment(createdAt).fromNow()}
           </Typography>
         </CardActions>
       </Card>
-      {/* <hr></hr> */}
     </>
   );
 };
