@@ -20,7 +20,6 @@ export default class UsersAPI extends HttpClient {
   public getAllUsers = async () => await this.instance.get<User[]>("/");
 
   public getUser = async (name: string) => {
-    console.log(name);
     return await this.instance.get<User>(`${name}`, {
       signal: this.controller?.signal,
     });
