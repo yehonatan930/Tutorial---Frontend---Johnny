@@ -11,17 +11,17 @@ import PostsAPI from "../../api/PostsAPI";
 import Post from "../../models/Post";
 import User from "../../models/User";
 import { LoggedInUserContext } from "../../contexts/LoggedInUserContext";
+import { CurrentPageContext } from "../../contexts/CurrentPageContext";
 
-interface NewPostProps {
-  setCurrentPage: (page: Page) => void;
-}
-
-const NewPost = ({ setCurrentPage }: NewPostProps) => {
+const NewPost = () => {
   const [imageURL, setImageURL] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
   const loggedInUserContext = useContext(LoggedInUserContext);
   const user: User = loggedInUserContext.user!;
+
+  const currentPageContext = useContext(CurrentPageContext);
+  const setCurrentPage = currentPageContext.setPage;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setImageURL(event.target.value);

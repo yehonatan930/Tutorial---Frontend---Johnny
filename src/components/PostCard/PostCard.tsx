@@ -15,6 +15,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import PostsAPI from "../../api/PostsAPI";
 import User from "../../models/User";
 import { LoggedInUserContext } from "../../contexts/LoggedInUserContext";
+import { CurrentPageContext } from "../../contexts/CurrentPageContext";
 
 const PostCard = ({
   id,
@@ -26,17 +27,24 @@ const PostCard = ({
   isLikedByCurrentUser,
 }: PostDTO) => {
   const navigate = useNavigate();
-  const [isLiked, setLiked] = useState<boolean>(isLikedByCurrentUser);
-  const [likesN, setLikesN] = useState(likesNum);
+
   const loggedInUserContext = useContext(LoggedInUserContext);
   const currentLoggedInUser: User = loggedInUserContext.user!;
+
+  const [isLiked, setLiked] = useState<boolean>(isLikedByCurrentUser);
+  const [likesN, setLikesN] = useState(likesNum);
+
   const isFirstRun = useRef(true);
+
   const clickCounter = useRef<number>(0);
   const firstClickTime = useRef<number>(0);
   const heartIconEffectRef = useRef<SVGSVGElement>(null);
 
+  const currentPageContext = useContext(CurrentPageContext);
+  const setCurrentPage = currentPageContext.setPage;
+
   const goToProfile = () => {
-    navigate(`/profile/${userName}`, { state: { userName } });
+    setCurrentPage("profile", userName);
   };
 
   const onLikeButton = () => {
@@ -49,7 +57,6 @@ const PostCard = ({
         isFirstRun.current = false;
         return;
       }
-      console.log(isLiked);
 
       if (isLiked) {
         PostsAPI.getInstance().likePost(id, currentLoggedInUser.name);

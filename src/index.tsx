@@ -6,13 +6,16 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import { defaultTheme } from "./utils/theme";
 import { LoggedInUserProvider } from "./contexts/LoggedInUserContext";
+import { CurrentPageProvider } from "./contexts/CurrentPageContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <LoggedInUserProvider>
-          <App />
+          <CurrentPageProvider>
+            <App />
+          </CurrentPageProvider>
         </LoggedInUserProvider>
       </BrowserRouter>
     </ThemeProvider>

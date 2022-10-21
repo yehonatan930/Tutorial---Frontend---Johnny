@@ -1,2 +1,2 @@
-type Page = "" | "newPost" | "profile";
+type Page = "home" | "newPost" | "profile";
 export { Page };

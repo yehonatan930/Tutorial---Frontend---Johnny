@@ -16,7 +16,6 @@ const Profile = () => {
   const loggedInUserContext = useContext(LoggedInUserContext);
 
   const fetchUser = async (userName: string) => {
-    console.log(userName);
     const { data } = await UsersAPI.getInstance().getUser(userName);
     setUser(data);
   };

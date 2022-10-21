@@ -9,19 +9,19 @@ import Avatar from "@mui/material/Avatar";
 import { useContext } from "react";
 import { LoggedInUserContext } from "../../contexts/LoggedInUserContext";
 import User from "../../models/User";
+import { CurrentPageContext } from "../../contexts/CurrentPageContext";
 
-interface LowerNavbarProps {
-  currentPage: Page;
-  setCurrentPage: (page: Page) => void;
-}
-
-const LowerNavbar = ({ currentPage, setCurrentPage }: LowerNavbarProps) => {
-  const handleChange = (event: React.SyntheticEvent, newPage: Page) => {
-    setCurrentPage(newPage);
-  };
+const LowerNavbar = () => {
+  const currentPageContext = useContext(CurrentPageContext);
+  const currentPage: Page = currentPageContext.currentPage;
+  const setCurrentPage = currentPageContext.setPage;
 
   const loggedInUserContext = useContext(LoggedInUserContext);
   const user: User = loggedInUserContext.user!;
+
+  const handleChange = (event: React.SyntheticEvent, newPage: Page) => {
+    setCurrentPage(newPage);
+  };
 
   return (
     <>
@@ -39,7 +39,7 @@ const LowerNavbar = ({ currentPage, setCurrentPage }: LowerNavbarProps) => {
         onChange={handleChange}
       >
         <BottomNavigationAction
-          value=""
+          value="home"
           icon={<HomeIcon />}
         ></BottomNavigationAction>
         <BottomNavigationAction

@@ -9,18 +9,23 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Page } from "../../utils/types";
 import { LoggedInUserContext } from "../../contexts/LoggedInUserContext";
 import User from "../../models/User";
+import { CurrentPageContext } from "../../contexts/CurrentPageContext";
 
 interface UpperNavbarProps {
   currentPage: Page;
   setCurrentPage: (page: Page) => void;
 }
 
-const UpperNavbar = ({ currentPage, setCurrentPage }: UpperNavbarProps) => {
+const UpperNavbar = () => {
   const loggedInUserContext = useContext(LoggedInUserContext);
   const currentLoggedInUser: User = loggedInUserContext.user!;
 
+  const currentPageContext = useContext(CurrentPageContext);
+  const currentPage: Page = currentPageContext.currentPage;
+  const setCurrentPage = currentPageContext.setPage;
+
   const goToHome = () => {
-    setCurrentPage("");
+    setCurrentPage("home");
   };
 
   return (
@@ -40,7 +45,7 @@ const UpperNavbar = ({ currentPage, setCurrentPage }: UpperNavbarProps) => {
               justifyContent: "center",
             }}
           >
-            {currentPage !== "" && (
+            {currentPage !== "home" && (
               <IconButton
                 size="large"
                 edge="start"
@@ -56,7 +61,7 @@ const UpperNavbar = ({ currentPage, setCurrentPage }: UpperNavbarProps) => {
               component="div"
               sx={{ fontFamily: "'Abril Fatface', 'cursive'" }}
             >
-              {currentPage === ""
+              {currentPage === "home"
                 ? "Instagram"
                 : currentPage === "newPost"
                 ? "Create New Post"
