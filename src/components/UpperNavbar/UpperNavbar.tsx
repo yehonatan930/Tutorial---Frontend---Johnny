@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./UpperNavbar.css";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -7,6 +7,8 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { Page } from "../../utils/types";
+import { LoggedInUserContext } from "../../contexts/LoggedInUserContext";
+import User from "../../models/User";
 
 interface UpperNavbarProps {
   currentPage: Page;
@@ -14,6 +16,9 @@ interface UpperNavbarProps {
 }
 
 const UpperNavbar = ({ currentPage, setCurrentPage }: UpperNavbarProps) => {
+  const loggedInUserContext = useContext(LoggedInUserContext);
+  const currentLoggedInUser: User = loggedInUserContext.user!;
+
   const goToHome = () => {
     setCurrentPage("");
   };
@@ -55,7 +60,7 @@ const UpperNavbar = ({ currentPage, setCurrentPage }: UpperNavbarProps) => {
                 ? "Instagram"
                 : currentPage === "newPost"
                 ? "Create New Post"
-                : "My Profile"}
+                : currentLoggedInUser.name}
             </Typography>
           </Toolbar>
         </AppBar>
