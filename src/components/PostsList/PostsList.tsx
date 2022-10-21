@@ -7,7 +7,7 @@ interface PostsListProps {
 }
 const PostsList = ({ posts }: PostsListProps) => {
   return (
-    <div className="posts-list--container">
+    <div id="posts-list--container">
       {posts &&
         posts.map((post) => {
           return <PostCard key={post.id} {...post}></PostCard>;

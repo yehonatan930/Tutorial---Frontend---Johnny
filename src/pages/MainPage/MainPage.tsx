@@ -3,7 +3,6 @@ import PostsAPI from "../../api/PostsAPI";
 import PostCard from "../../components/PostCard/PostCard";
 import PostsList from "../../components/PostsList/PostsList";
 import PostDTO from "../../models/PostDTO";
-import "./MainPage.css";
 
 const MainPage = () => {
   const [allPosts, setAllPosts] = useState<PostDTO[]>([]);
