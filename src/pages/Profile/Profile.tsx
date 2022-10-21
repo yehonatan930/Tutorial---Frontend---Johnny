@@ -15,31 +15,19 @@ const Profile = () => {
   const { state } = useLocation();
   const loggedInUserContext = useContext(LoggedInUserContext);
 
-  const fetchUser = async (userName: User, isMounted: boolean) => {
+  const fetchUser = async (userName: string) => {
     console.log(userName);
-    if (isMounted) {
-      const { data } = await UsersAPI.getInstance().getUser(userName.name);
-      setUser(data);
-    }
-    // UsersAPI.getInstance().controller = null;
+    const { data } = await UsersAPI.getInstance().getUser(userName);
+    setUser(data);
   };
 
   useEffect(() => {
-    let isMounted = true;
-
     if (state?.userName) {
-      // fetchUser(state.userName, isMounted);
+      fetchUser(state.userName);
     } else {
       setUser(loggedInUserContext.user);
     }
-
-    return () => {
-      isMounted = false;
-    };
-    // return () => {
-    //   UsersAPI.getInstance().controller?.abort();
-    // };
-  }, []);
+  }, [state?.userName]);
 
   useEffect(() => {
     const getAllPostCardsOfUser = async (user: User) => {
