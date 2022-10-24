@@ -36,6 +36,8 @@ const UpperNavbar = () => {
             position: "relative",
             height: "56px",
             width: "100vw",
+            backgroundColor: "#ffffff",
+            color: "#000000",
           }}
         >
           <Toolbar
@@ -53,7 +55,7 @@ const UpperNavbar = () => {
                 sx={{ position: "absolute", left: 12 }}
                 onClick={goToHome}
               >
-                <CloseIcon sx={{ color: "#313638" }} />
+                <CloseIcon sx={{ color: "#000000" }} />
               </IconButton>
             )}
             <Typography

@@ -17,7 +17,7 @@ const App = () => {
         <Routes>
           <Route path="/home" element={<MainPage />} />
           <Route path="/newPost" element={<NewPost />} />
-          <Route path="/profile/current" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:userName" element={<Profile />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
           <Route path="/*" element={<NoPage />} />

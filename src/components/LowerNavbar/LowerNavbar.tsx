@@ -47,7 +47,7 @@ const LowerNavbar = () => {
           icon={<AddPhotoAlternateIcon />}
         ></BottomNavigationAction>
         <BottomNavigationAction
-          value="profile/current"
+          value="profile"
           icon={
             <Avatar
               src={
