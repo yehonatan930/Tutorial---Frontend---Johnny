@@ -13,10 +13,8 @@ import { Skeleton } from "@mui/material";
 const Profile = () => {
   const [userPosts, setUserPosts] = useState<PostDTO[]>([]);
   const [user, setUser] = useState<User | null>(null);
-  const { state, ...location } = useLocation();
+  const { state } = useLocation();
   const loggedInUserContext = useContext(LoggedInUserContext);
-
-  console.log(location);
 
   const fetchUser = async (userName: string) => {
     const { data } = await UsersAPI.getInstance().getUser(userName);

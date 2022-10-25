@@ -22,6 +22,9 @@ export default class PostsAPI extends HttpClient {
   public getAllPostCards = async () =>
     await this.instance.get<PostDTO[]>("postCards");
 
+  public getFewPostCards = async (page: number) =>
+    await this.instance.get<PostDTO[]>(`postCards/${page}`);
+
   public getPost = async (id: string) => await this.instance.get<Post>(`${id}`);
 
   public deletePost = async (id: string) =>
