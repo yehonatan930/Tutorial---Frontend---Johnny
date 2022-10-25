@@ -3,7 +3,7 @@ import UsersAPI from "../api/UsersAPI";
 import User from "../models/User";
 
 export interface IUserContext {
-  user: User | undefined;
+  user: User | null;
   refreshContext: () => void;
 }
 
@@ -12,7 +12,7 @@ export const LoggedInUserContext = createContext<IUserContext>(
 );
 
 export const LoggedInUserProvider: React.FC = (props) => {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<User | null>(null);
 
   const usersAPI = UsersAPI.getInstance();
 

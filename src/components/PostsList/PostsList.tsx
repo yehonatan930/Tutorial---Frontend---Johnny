@@ -1,5 +1,5 @@
 import "./PostsList.css";
-import PostDTO from "../../models/PostDTO";
+import PostDTO from "../../dto/PostDTO";
 import PostCard from "../PostCard/PostCard";
 import PostCardPlaceholder from "../PostCard/PostCardPlaceholder";
 import FadeIn from "react-fade-in";

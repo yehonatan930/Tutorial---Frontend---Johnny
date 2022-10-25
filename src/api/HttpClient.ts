@@ -15,7 +15,9 @@ export default abstract class HttpClient {
     );
   }
 
-  private handleResponse(response: AxiosResponse) {
+  private async handleResponse(response: AxiosResponse) {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
     return response;
   }
   private handleError(error: any) {

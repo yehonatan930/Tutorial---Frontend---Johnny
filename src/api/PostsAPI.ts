@@ -1,6 +1,6 @@
 import HttpClient from "./HttpClient";
 import Post from "../models/Post";
-import PostDTO from "../models/PostDTO";
+import PostDTO from "../dto/PostDTO";
 
 export default class PostsAPI extends HttpClient {
   private static classInstance?: PostsAPI;

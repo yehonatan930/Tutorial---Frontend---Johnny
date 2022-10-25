@@ -5,15 +5,18 @@ import { LoggedInUserContext } from "../../contexts/LoggedInUserContext";
 import Typography from "@mui/material/Typography";
 import PostsList from "../../components/PostsList/PostsList";
 import User from "../../models/User";
-import PostDTO from "../../models/PostDTO";
+import PostDTO from "../../dto/PostDTO";
 import UsersAPI from "../../api/UsersAPI";
 import { useLocation } from "react-router-dom";
+import { Skeleton } from "@mui/material";
 
 const Profile = () => {
   const [userPosts, setUserPosts] = useState<PostDTO[]>([]);
-  const [user, setUser] = useState<User | undefined>(new User("", "", []));
-  const { state } = useLocation();
+  const [user, setUser] = useState<User | null>(null);
+  const { state, ...location } = useLocation();
   const loggedInUserContext = useContext(LoggedInUserContext);
+
+  console.log(location);
 
   const fetchUser = async (userName: string) => {
     const { data } = await UsersAPI.getInstance().getUser(userName);
@@ -23,26 +26,43 @@ const Profile = () => {
   useEffect(() => {
     if (state?.userName) {
       fetchUser(state.userName);
+
+      const getAllPostCardsOfUser = async (username: string) => {
+        const { data } = await UsersAPI.getInstance().getUserPosts(username);
+
+        setUserPosts(data);
+      };
+
+      getAllPostCardsOfUser(state.userName);
     } else {
       setUser(loggedInUserContext.user);
     }
   }, [state?.userName]);
 
-  useEffect(() => {
-    const getAllPostCardsOfUser = async (user: User) => {
-      const { data } = await UsersAPI.getInstance().getUserPosts(user.name);
-      setUserPosts(data);
-    };
-    user && getAllPostCardsOfUser(user);
-  }, [user]);
-
   return (
     <>
       <div id="profile-header">
-        <Avatar sx={{ width: "6rem", height: "6rem" }} src={user?.avatarSrc} />
-        <Typography variant="h5" sx={{}}>
-          {user?.name}
-        </Typography>
+        {user ? (
+          <>
+            <Avatar
+              sx={{ width: "6rem", height: "6rem" }}
+              src={user.avatarSrc}
+            />
+            <Typography variant="h5" sx={{}}>
+              {user.name}
+            </Typography>
+          </>
+        ) : (
+          <>
+            <Skeleton
+              animation="wave"
+              variant="circular"
+              width={"6rem"}
+              height={"6rem"}
+            />
+            <Skeleton animation="wave" height={10} />
+          </>
+        )}
       </div>
       <PostsList posts={userPosts}></PostsList>
     </>

@@ -29,7 +29,7 @@ const PostCardPlaceholder = () => (
         }
         title={<Skeleton animation="wave" height={10} width="80%" />}
       />
-      <Skeleton sx={{ height: 194 }} animation="wave" variant="rectangular" />
+      <Skeleton sx={{ height: 200 }} animation="wave" variant="rectangular" />
 
       <CardActions disableSpacing sx={{ p: "24px" }}>
         <Skeleton

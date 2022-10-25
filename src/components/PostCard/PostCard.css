@@ -41,18 +41,12 @@
   }
 }
 
-.like-button {
+div > .like-button {
   animation-duration: 450ms;
   animation-name: like-button-animation;
   animation-timing-function: ease-in-out;
   transform: scale(1);
-}
-
-.like-heart-effect {
-  animation-duration: 1000ms;
-  animation-name: like-heart-animation;
-  animation-timing-function: ease-in-out;
-  transform-origin: center;
+  color: #e57373;
 }
 
 .heart-icon-design {
@@ -66,4 +60,16 @@
   position: absolute;
   top: 50%;
   left: 50%;
+}
+
+div > .heart-icon-design {
+  display: none;
+}
+
+div > .like-heart-effect {
+  display: block;
+  animation-duration: 1000ms;
+  animation-name: like-heart-animation;
+  animation-timing-function: ease-in-out;
+  transform-origin: center;
 }

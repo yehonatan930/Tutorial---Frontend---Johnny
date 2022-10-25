@@ -8,14 +8,13 @@ import CardActions from "@mui/material/CardActions";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Typography from "@mui/material/Typography";
-import PostDTO from "../../models/PostDTO";
+import PostDTO from "../../dto/PostDTO";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState, AnimationEvent } from "react";
 import PostsAPI from "../../api/PostsAPI";
-import User from "../../models/User";
 import { LoggedInUserContext } from "../../contexts/LoggedInUserContext";
 import { CurrentPageContext } from "../../contexts/CurrentPageContext";
+import useDoubleClick from "../../hooks/useDoubleClick";
 
 const PostCard = ({
   id,
@@ -26,71 +25,37 @@ const PostCard = ({
   likesNum,
   isLikedByCurrentUser,
 }: PostDTO) => {
-  const loggedInUserContext = useContext(LoggedInUserContext);
-  const currentLoggedInUser: User = loggedInUserContext.user!;
+  const { setPage: setCurrentPage } = useContext(CurrentPageContext);
+  const { user: currentLoggedInUser } = useContext(LoggedInUserContext);
 
   const [isLiked, setLiked] = useState<boolean>(isLikedByCurrentUser);
-  const [likesN, setLikesN] = useState(likesNum);
-
-  const isFirstRun = useRef(true);
-
-  const clickCounter = useRef<number>(0);
-  const firstClickTime = useRef<number>(0);
-  const heartIconEffectRef = useRef<SVGSVGElement>(null);
-
-  const currentPageContext = useContext(CurrentPageContext);
-  const setCurrentPage = currentPageContext.setPage;
+  const [likeCount, setLikeCount] = useState<number>(likesNum);
+  const [animationRunning, setAnimationRunning] = useState<boolean>(false);
 
   const goToProfile = () => {
     setCurrentPage("profile", userName);
   };
 
-  const onLikeButton = () => {
-    setLiked(!isLiked);
-  };
-
-  useEffect(() => {
-    const likePost = async () => {
-      if (isFirstRun.current) {
-        isFirstRun.current = false;
-        return;
-      }
-
-      if (isLiked) {
+  function handleLike() {
+    if (currentLoggedInUser) {
+      if (!isLiked) {
         PostsAPI.getInstance().likePost(id, currentLoggedInUser.name);
-        setLikesN(likesN + 1);
+        setLikeCount(likeCount + 1);
       } else {
         PostsAPI.getInstance().unLikePost(id, currentLoggedInUser.name);
-        setLikesN(likesN - 1);
+        setLikeCount(likeCount - 1);
       }
-    };
 
-    likePost();
-  }, [isLiked]);
-
-  const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-
-  const detectDoubleClick = async () => {
-    if (new Date().getTime() - firstClickTime.current > 500) {
-      clickCounter.current = 0;
+      setLiked(!isLiked);
     }
+  }
 
-    clickCounter.current += 1;
+  const handleDoubleTapLike = useDoubleClick(async () => {
+    setAnimationRunning(true);
+    !isLiked && handleLike();
+  });
 
-    if (clickCounter.current === 1) {
-      firstClickTime.current = new Date().getTime();
-    }
-
-    if (clickCounter.current == 2 && heartIconEffectRef.current) {
-      heartIconEffectRef.current.classList.add("like-heart-effect");
-      setLiked(true);
-      await delay(1001);
-      heartIconEffectRef.current.classList.remove("like-heart-effect");
-      clickCounter.current = 0;
-    }
-  };
-
-  return (
+  return currentLoggedInUser ? (
     <Card
       sx={{
         width: "100%",
@@ -109,25 +74,26 @@ const PostCard = ({
         onClick={goToProfile}
       />
       <FavoriteIcon
-        ref={heartIconEffectRef}
-        className="heart-icon-design"
-      ></FavoriteIcon>
+        onAnimationEnd={() => setAnimationRunning(false)}
+        className={
+          "heart-icon-design" + (animationRunning ? " like-heart-effect" : "")
+        }
+      />
       <CardMedia
         component="img"
-        height="194"
+        height="200"
         image={photoSrc}
-        onClick={detectDoubleClick}
+        onClick={handleDoubleTapLike}
       />
       <CardActions disableSpacing>
         <IconButton
           className={isLiked ? "like-button" : ""}
-          sx={{ color: isLiked ? "#e57373" : undefined }}
-          onClick={onLikeButton}
+          onClick={() => handleLike()}
         >
           {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </IconButton>
         <Typography sx={{ color: isLiked ? "#e57373" : undefined }}>
-          {likesN}
+          {likeCount}
         </Typography>
 
         <Typography sx={{ ml: "auto" }}>
@@ -135,6 +101,8 @@ const PostCard = ({
         </Typography>
       </CardActions>
     </Card>
+  ) : (
+    <></>
   );
 };
 
