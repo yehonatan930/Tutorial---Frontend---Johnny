@@ -26,8 +26,6 @@ const PostCard = ({
   likesNum,
   isLikedByCurrentUser,
 }: PostDTO) => {
-  const navigate = useNavigate();
-
   const loggedInUserContext = useContext(LoggedInUserContext);
   const currentLoggedInUser: User = loggedInUserContext.user!;
 
@@ -93,52 +91,50 @@ const PostCard = ({
   };
 
   return (
-    <>
-      <Card
-        sx={{
-          width: "100%",
-          borderRadius: 0,
-          borderTop: 0,
-          borderRight: 0,
-          borderLeft: 0,
-          borderBottom: "2px solid rgba(0, 0, 0, 0.12)",
-          position: "relative",
-        }}
-        variant="outlined"
-      >
-        <CardHeader
-          avatar={<Avatar src={avatarSrc}></Avatar>}
-          title={userName}
-          onClick={goToProfile}
-        />
-        <FavoriteIcon
-          ref={heartIconEffectRef}
-          className="heart-icon-design"
-        ></FavoriteIcon>
-        <CardMedia
-          component="img"
-          height="194"
-          image={photoSrc}
-          onClick={detectDoubleClick}
-        />
-        <CardActions disableSpacing>
-          <IconButton
-            className={isLiked ? "like-button" : ""}
-            sx={{ color: isLiked ? "#e57373" : undefined }}
-            onClick={onLikeButton}
-          >
-            {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-          </IconButton>
-          <Typography sx={{ color: isLiked ? "#e57373" : undefined }}>
-            {likesN}
-          </Typography>
+    <Card
+      sx={{
+        width: "100%",
+        borderRadius: 0,
+        borderTop: 0,
+        borderRight: 0,
+        borderLeft: 0,
+        borderBottom: "2px solid rgba(0, 0, 0, 0.12)",
+        position: "relative",
+      }}
+      variant="outlined"
+    >
+      <CardHeader
+        avatar={<Avatar src={avatarSrc}></Avatar>}
+        title={userName}
+        onClick={goToProfile}
+      />
+      <FavoriteIcon
+        ref={heartIconEffectRef}
+        className="heart-icon-design"
+      ></FavoriteIcon>
+      <CardMedia
+        component="img"
+        height="194"
+        image={photoSrc}
+        onClick={detectDoubleClick}
+      />
+      <CardActions disableSpacing>
+        <IconButton
+          className={isLiked ? "like-button" : ""}
+          sx={{ color: isLiked ? "#e57373" : undefined }}
+          onClick={onLikeButton}
+        >
+          {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        </IconButton>
+        <Typography sx={{ color: isLiked ? "#e57373" : undefined }}>
+          {likesN}
+        </Typography>
 
-          <Typography sx={{ ml: "auto" }}>
-            {moment(createdAt).fromNow()}
-          </Typography>
-        </CardActions>
-      </Card>
-    </>
+        <Typography sx={{ ml: "auto" }}>
+          {moment(createdAt).fromNow()}
+        </Typography>
+      </CardActions>
+    </Card>
   );
 };
 

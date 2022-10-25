@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import PostsAPI from "../../api/PostsAPI";
-import PostCard from "../../components/PostCard/PostCard";
 import PostsList from "../../components/PostsList/PostsList";
 import PostDTO from "../../models/PostDTO";
 
 const MainPage = () => {
-  const [allPosts, setAllPosts] = useState<PostDTO[]>([]);
+  const [allPosts, setAllPosts] = useState<PostDTO[] | null>(null);
 
   useEffect(() => {
     const getAllPostCards = async () => {
